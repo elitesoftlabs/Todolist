@@ -1,0 +1,22 @@
+.container {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.my-full-width {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.nav-font-color {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.header-bg {
+    background-color: #1888B8 !important;
+}
+
+.nav-bg{
+    background-color: #97352E !important;
+}

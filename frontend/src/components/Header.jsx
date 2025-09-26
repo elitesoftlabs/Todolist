@@ -1,23 +1,31 @@
-import { Link } from "react-router-dom";
-import { logout } from "../services/AuthServices";
+import { Container, Row, Col, Navbar, Nav, Card, Button } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 function Header() {
-  const handleLogout = () => {
-    logout();
-    window.location.href = "/login";
+  const navigate = useNavigate();
+    const handleLogout = async () => {
+    await api.post("/auth/logout");
+    navigate("/login");
   };
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <Link className="navbar-brand" to="/">Task Manager</Link>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item"><button className="btn btn-outline-light" onClick={handleLogout}>Logout</button></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar className="header-bg" variant="dark" expand="lg">
+        <Container fluid className="w-100 my-full-width">
+          <Navbar.Brand href="#">
+            Elite Soft Labs - Job Portal   
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="main-navbar" />
+          <Navbar.Collapse id="main-navbar">
+              <Nav className="ms-auto nav-font-color">
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                <Nav.Link as={Link} to="/about">About</Nav.Link>
+                <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                <Button variant="light" onClick={handleLogout}>Logout</Button>
+              </Nav>
+          </Navbar.Collapse>
+        </Container>
+    </Navbar>
   );
 }
+
 export default Header;
